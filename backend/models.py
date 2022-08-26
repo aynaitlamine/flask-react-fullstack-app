@@ -1,10 +1,11 @@
 import os
 from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import json
 
 database_name = 'trivia'
-database_path = 'postgresql://{}/{}'.format('localhost:5432', database_name)
+database_path = f'postgresql://{os.environ.get("POSTGRES_USER")}:{os.environ.get("POSTGRES_USER")}@localhost:5432/{database_name}'
 
 db = SQLAlchemy()
 
@@ -17,6 +18,8 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
+    migrate = Migrate(app, db)
+    
     db.create_all()
 
 """

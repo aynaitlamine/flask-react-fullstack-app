@@ -7,9 +7,14 @@ venv
 .DS_Store
 .DS_Store?
 ._*
+*/__pycache__
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
 env/
 frontend/node_modules/
+.env
+
+
+
